@@ -18,20 +18,18 @@
 4.可以最后增加用户对话。
 
 ## 目前效果
-![基础分析界面](./image1.png)
-*基础八字分析 - 角色聊天界面展示*
+<img width="1438" alt="image" src="https://github.com/user-attachments/assets/1e6f07f9-9568-42f9-a040-1a136942d763" />
+<img width="1425" alt="image" src="https://github.com/user-attachments/assets/372699f7-5804-4547-b8b9-17f4b7992f61" />
 
-![进阶分析界面](./image2.png)  
-*进阶深度分析 - 完整对话展示*
 
 ## 碎碎念
-我认为在八字解读结合AI这个领域上，能从产品创新主要是以上层面了。
+在八字解读结合AI这个领域上，我能想到的从产品创新主要是以上层面了。
 但是这个作品想要真正受到领域爱好者的认可，还应该内置很多的知识理念。因此这只能是一个tiny toy，达成了技术能触达的部分，还有很长的专业性之路要走。
 
 此外，明确LLM能力边界，能用规则低成本解决的排盘、不用AI。排盘规则感谢：https://github.com/Elisabethhui/paipan-1
 以及谢谢Cursor🥹
 
-对应coze版本：https://www.coze.cn/s/l33RA8-y0_E/ （通过规则workflow排盘，要求按角色输出）
+对应coze版本：https://www.coze.cn/s/l33RA8-y0_E/ （通过规则workflow排盘，要求按角色输出，coze能力限制无法做对话界面）
 
 
 
