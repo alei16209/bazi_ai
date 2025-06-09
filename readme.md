@@ -2,6 +2,7 @@
 
 ## 项目背景
 （由于私人网站域名尚在备案流程中，通过github形式呈现）
+
 一直看到AI都是从聊天框流式输出，有时候会觉得太长了，即使根据markdown分了结构，还是觉得没有很强的层次感。
 
 刚好有时研究八字，八字中每个字都有每个独特的意向，且意向之间都有很强的作用力，呈现接近于网状结构。
@@ -19,14 +20,16 @@
 
 ## 目前效果
 <img width="1438" alt="image" src="https://github.com/user-attachments/assets/1e6f07f9-9568-42f9-a040-1a136942d763" />
+
 <img width="1425" alt="image" src="https://github.com/user-attachments/assets/372699f7-5804-4547-b8b9-17f4b7992f61" />
 
 
 ## 碎碎念
 在八字解读结合AI这个领域上，我能想到的从产品创新主要是以上层面了。
+
 但是这个作品想要真正受到领域爱好者的认可，还应该内置很多的知识理念。因此这只能是一个tiny toy，达成了技术能触达的部分，还有很长的专业性之路要走。
 
-此外，明确LLM能力边界，能用规则低成本解决的排盘、不用AI。排盘规则感谢：https://github.com/Elisabethhui/paipan-1
+此外，明确LLM能力边界，能用规则低成本解决的排盘、不用AI。排盘规则感谢：https://github.com/Elisabethhui/paipan-1，
 以及谢谢Cursor🥹
 
 对应coze版本：https://www.coze.cn/s/l33RA8-y0_E/ （通过规则workflow排盘，要求按角色输出，coze能力限制无法做对话界面）
