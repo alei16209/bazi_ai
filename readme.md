@@ -25,6 +25,7 @@
 4.可以最后增加用户对话。
 
 ## 目前效果
+每个图片对应一次API调用（固定prompt模板、填入当前用户信息）
 <img width="1438" alt="image" src="https://github.com/user-attachments/assets/1e6f07f9-9568-42f9-a040-1a136942d763" />
 
 <img width="1425" alt="image" src="https://github.com/user-attachments/assets/372699f7-5804-4547-b8b9-17f4b7992f61" />
