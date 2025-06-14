@@ -58,10 +58,10 @@ AI调用逻辑：
 4.可以最后增加用户对话。
 
 ## 目前效果
-每个图片对应一次API调用（即固定写好了几个prompt模板，）
+基础版（对应一次API调用）
 <img width="1447" alt="image" src="https://github.com/user-attachments/assets/c90d7ca4-060b-468c-8963-e4e8d9f99352" />
 
-
+进阶版（对应一次API调用）
 <img width="1425" alt="image" src="https://github.com/user-attachments/assets/372699f7-5804-4547-b8b9-17f4b7992f61" />
 
 
