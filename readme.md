@@ -59,10 +59,14 @@ AI调用逻辑：
 
 ## 目前效果
 基础版（对应一次API调用）
-<img width="1447" alt="image" src="https://github.com/user-attachments/assets/c90d7ca4-060b-468c-8963-e4e8d9f99352" />
+<img width="1414" alt="image" src="https://github.com/user-attachments/assets/cc88cc69-9b03-42dd-b622-b50e1313810b" />
+
+
+
 
 进阶版（对应一次API调用）
-<img width="1425" alt="image" src="https://github.com/user-attachments/assets/372699f7-5804-4547-b8b9-17f4b7992f61" />
+<img width="1450" alt="image" src="https://github.com/user-attachments/assets/9eed697f-97dd-4c29-97ff-e2bab09f2569" />
+
 
 
 ## 关于AI的实践感受
