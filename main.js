@@ -52,13 +52,13 @@ document.body.innerHTML = `
           
           <div style="margin-bottom: 15px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
             <span style="font-weight: 500; margin-right: 4px;">生辰：</span>
-            <input type="number" id="year" name="year" min="1900" max="2100" style="width: 70px; padding: 8px; border: 1px solid #ced4da; border-radius: 4px;" placeholder="1990" />
+            <input type="number" id="year" name="year" min="1900" max="2100" style="width: 70px; padding: 8px; border: 1px solid #ced4da; border-radius: 4px;" placeholder="1996" />
             <span>年</span>
-            <input type="number" id="month" name="month" min="1" max="12" style="width: 50px; padding: 8px; border: 1px solid #ced4da; border-radius: 4px;" placeholder="1" />
+            <input type="number" id="month" name="month" min="1" max="12" style="width: 50px; padding: 8px; border: 1px solid #ced4da; border-radius: 4px;" placeholder="6" />
             <span>月</span>
-            <input type="number" id="day" name="day" min="1" max="31" style="width: 50px; padding: 8px; border: 1px solid #ced4da; border-radius: 4px;" placeholder="1" />
+            <input type="number" id="day" name="day" min="1" max="31" style="width: 50px; padding: 8px; border: 1px solid #ced4da; border-radius: 4px;" placeholder="6" />
             <span>日</span>
-            <input type="number" id="hour" name="hour" min="0" max="23" style="width: 50px; padding: 8px; border: 1px solid #ced4da; border-radius: 4px;" placeholder="12" />
+            <input type="number" id="hour" name="hour" min="0" max="23" style="width: 50px; padding: 8px; border: 1px solid #ced4da; border-radius: 4px;" placeholder="6" />
             <span>时</span>
           </div>
           
@@ -79,7 +79,7 @@ document.body.innerHTML = `
     
     <!-- 右侧：分析结果 (2/3) -->
     <div class="right-panel" style="flex: 2; background-color: #f8f9fa; border-radius: 12px; padding: 20px; overflow-y: auto; border: 1px solid #e9ecef; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-      <h2 style="margin-top: 0; color: #333; text-align: center;">八字分析</h2>
+      <h2 style="margin-top: 0; color: #333; text-align: center;">AI八字对话</h2>
       <div id="analysisResult" style="background-color: white; border-radius: 8px; padding: 20px; min-height: 200px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); color: #666; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <div style="text-align: center;">
           <div style="font-size: 48px; margin-bottom: 16px;">🎯</div>
@@ -199,6 +199,7 @@ document.getElementById('baziForm').addEventListener('submit', function(e) {
       const zhis = [bazi.yZhi(), bazi.mZhi(), bazi.dZhi(), bazi.hZhi()];
 
       const prompt = 
+
         `天干：${gans.join(' ')}\n` +
         `地支：${zhis.join(' ')}\n\n` +
         `请模拟八字中八个角色的对话：\n` +
@@ -210,15 +211,16 @@ document.getElementById('baziForm').addEventListener('submit', function(e) {
         `- 日支（${zhis[2]}）\n` +
         `- 时干（${gans[3]}）\n` +
         `- 时支（${zhis[3]}）\n\n` +
-
+        `参考《穷通宝典》、《三命通会》、《滴天髓》、《渊海子平》、《千里命稿》、《协纪辨方书》、《果老星宗》、《子平真诠》、《神峰通考》等知识。\n` +
         `- 以"日主（${gans[2]}）"开头，介绍什么是日主、在生命中起到的作用、它的属性代表的个人特质。其他角色按年干、年支、月干、月支、日支、时干、时支顺序轮流发言\n` +
         `每个角色依次发言，内容包括（：\n` +
         `1. 自己的五行意向\n` +
-        `2. 在命主生活中代表的角色\n` +
-        `3. 可能透露命主的性格特征或者天赋\n` +
-        `4. 对应的命主年龄阶段（日主没有）、亲缘关系、经历\n` +
+        `2. 自己的五行与命主五行的关系（生助泻克耗），先不要使用十神的词汇，只用生助泻克耗对应的意向\n` +        
+        `3. 自己所处的位置，位置的意义，如在命主生活中代表的角色、对应的年龄阶段\n` +
+        `4. 可能透露命主的性格特征或者天赋\n` +
         `要求：\n` +
         `- 用通俗易懂的语言描述。\n` +
+        `- 每段都以"干支（天干地支）："开始，这是重要的角色标识，例如"年干（丙）："表示这一段是描述年干丙火的特征\n` +
         `请直接输出角色对话内容，角色名称保持形如年干（${gans[0]}），不要有其他名称。只输出角色对话内容。总结性的话语通过 日主（${gans[2]}） 角色说出 。不要出现对话之外的提示性词语。`;
 
       console.log(prompt);
@@ -291,8 +293,12 @@ document.getElementById('baziForm').addEventListener('submit', function(e) {
         // 处理分析结果，按聊天框形式显示
         function formatAnalysisResult(text, currentRiZhuWuXing = riZhuWuXing, currentShengRiZhuWuXing = shengRiZhuWuXing) {
           console.log('formatAnalysisResult 被调用，参数:', { text: text.substring(0, 100) + '...', currentRiZhuWuXing, currentShengRiZhuWuXing });
-          // 按双换行符分割段落，并过滤掉包含 --- 分割线的段落
-          const paragraphs = text.split('\n\n').filter(p => p.trim() && !p.trim().includes('---'));
+          console.log('完整文本内容:', text);
+          
+          // 按换行符分割段落（包括单换行符和双换行符），并过滤掉包含 --- 分割线的段落
+          const paragraphs = text.split(/\n+/).filter(p => p.trim() && !p.trim().includes('---'));
+          console.log('分割后的段落数量:', paragraphs.length);
+          console.log('段落内容:', paragraphs);
           
           let formattedHTML = ``;
           
@@ -310,6 +316,7 @@ document.getElementById('baziForm').addEventListener('submit', function(e) {
             if (speakerMatch) {
               const speaker = speakerMatch[1];
               const content = speakerMatch[2];
+              console.log('识别角色:', speaker, '内容长度:', content.length);
               
               // 直接使用映射获取角色信息
               const bracketMatch = speaker.match(/（(.+)）/);
@@ -344,16 +351,7 @@ document.getElementById('baziForm').addEventListener('submit', function(e) {
               }
               
               // 判断是否是"同我生我"的五行（从右侧发出）
-              // 五行相生关系：木生火，火生土，土生金，金生水，水生木
-              const wuxingSheng = {
-                '木': '火',  // 木生火
-                '火': '土',  // 火生土  
-                '土': '金',  // 土生金
-                '金': '水',  // 金生水
-                '水': '木'   // 水生木
-              };
-              
-              // 找出哪些五行生日主
+              // 找出哪些五行生日主（使用全局的wuxingSheng映射）
               let shengWoWuxing = null;
               for (let [sheng, bei] of Object.entries(wuxingSheng)) {
                 if (bei === currentRiZhuWuXing) {
@@ -478,7 +476,7 @@ document.getElementById('baziForm').addEventListener('submit', function(e) {
 
                 `请用以上八个角色的口吻，阐释以下问题：\n` +
                 `1. 五行旺衰分析：分析各五行的强弱程度\n` +
-                `2. 十神身份：每个角色的十神身份、和命主的作用关系，可能对应的人生经历、天赋、性格\n` +
+                `2. 十神身份：每个角色的十神身份、和命主的生助泻克耗关系，可能对应的人生经历、天赋、性格\n` +
                 `3. 格局分析：是否有角色间作用形成格局\n` +
                 `5. 事业财运（选答，没有可以不答）：分析适合的职业方向和财运特征\n` +
                 `6. 婚姻感情（选答，没有可以不答）：分析感情和婚姻的特点\n` +
@@ -679,16 +677,11 @@ function Bazi(y,m,d,h,sex){
         "戌":["戊",32,"丁",8,"辛",8],
         "亥":["壬",32,"甲",16]
 	}
-	this.yGan=function(){  //年干
-		return tg[(y+6)%10];   
+	this.yGan = function() { // 年干
+		return tg[(y - 1864) % 10];
 	}
-	this.yZhi=function(){  //年支
-		var nz;
-        if(y-1984<=0) nz=dz0[11+(y-1984)%12];
-        if(y-1984>0){
-          ((y-1984)%12-1)==-1?nz=dz0[11]:nz=dz0[(y-1984)%12-1];
-        }
-        return nz;
+	this.yZhi = function() { // 年支
+		return dz[(y - 1864) % 12];
 	}
 	this.yZhu=function(){  //年柱
 		return this.yGan()+this.yZhi();
@@ -706,12 +699,10 @@ function Bazi(y,m,d,h,sex){
         }
         return yg;
 	}
-	this.mZhi=function(){  //月支
-		var yz=dz0[m];        
-        if(y_t<((y-1984)*31556926009+jq84[m])){
-            yz=dz0[dz.indexOf(yz)-1];
-        }
-        return yz;
+	this.mZhi = function() { // 月支
+		// 以农历正月为寅月，公历1月、2月通常为上一年腊月和正月，需结合节气判断
+		// 简化版：假设输入的m为1-12，正月为寅
+		return dz[(m + 1) % 12];
 	}
 	this.mZhu=function(){  //月柱
 		return this.mGan()+this.mZhi();
